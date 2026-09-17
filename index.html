@@ -752,9 +752,8 @@ section{padding:88px 0;}
         </div>
       </div>
       <div class="contact-form">
-        <form id="contactForm" action="https://formspree.io/f/xjyvvezp" method="POST" novalidate>
+        <form id="contactForm" novalidate>
           <input type="hidden" name="_subject" value="New enquiry — Aikinetic Tech">
-          <input type="hidden" name="_next" value="https://aikinetic-tech.com/#contact">
           <input type="hidden" name="_replyto" id="replyto-field" value="">
           <input type="hidden" name="_next" value="">
           <div class="form-row">
@@ -879,6 +878,8 @@ document.addEventListener('click', function(e) {
 });
 
 // ── FORM VALIDATION & SUBMIT ──
+var FORMSPREE_URL = 'https://formspree.io/f/xjyvvezp';
+
 var fields = [
   { id: 'fname',    errId: 'fname-err',    validate: function(v){ return v.trim().length > 0; } },
   { id: 'lname',    errId: 'lname-err',    validate: function(v){ return v.trim().length > 0; } },
@@ -900,8 +901,13 @@ fields.forEach(function(cfg) {
   });
 });
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  // Validate first
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var form = this;
+  var msg = document.getElementById('formMsg');
+  var btn = document.getElementById('submitBtn');
+
+  // Validate
   var valid = true;
   fields.forEach(function(cfg) {
     var el = document.getElementById(cfg.id);
@@ -916,25 +922,72 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   });
 
   if (!valid) {
-    e.preventDefault();
-    var msg = document.getElementById('formMsg');
     msg.innerHTML = 'Please fill in all required fields correctly.';
     msg.className = 'form-msg err';
     return;
   }
 
-  // Set reply-to from email field
-  var email = document.getElementById('email').value.trim();
-  var replyTo = document.getElementById('replyto-field');
-  if (replyTo) replyTo.value = email;
-
-  // Let the native form POST to Formspree — no fetch, no CORS issues
-  // Formspree will send the email and redirect back (or to _next URL)
-  var btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Sending\u2026';
-  // form submits natively
+  msg.className = 'form-msg';
+  msg.innerHTML = '';
+
+  var email = document.getElementById('email').value.trim();
+  var fname = document.getElementById('fname').value.trim();
+  var lname = document.getElementById('lname').value.trim();
+
+  // Build JSON payload — Formspree accepts JSON and won't redirect
+  var payload = {
+    fname: fname,
+    lname: lname,
+    email: email,
+    company: document.getElementById('company').value.trim(),
+    interest: document.getElementById('interest').value,
+    message: document.getElementById('message').value.trim(),
+    _replyto: email,
+    _subject: 'New enquiry from ' + fname + ' ' + lname + ' \u2014 Aikinetic Tech'
+  };
+
+  try {
+    var res = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    var json = {};
+    try { json = await res.json(); } catch(x) {}
+    if (res.ok) {
+      showSuccess(form, msg, btn);
+    } else {
+      msg.innerHTML = json.error || 'Something went wrong. Please email <strong>ismat485@gmail.com</strong> directly.';
+      msg.className = 'form-msg err';
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  } catch(err) {
+    // Network error
+    msg.innerHTML = 'Unable to send right now. Please email <strong>ismat485@gmail.com</strong> directly.';
+    msg.className = 'form-msg err';
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  }
 });
+
+function showSuccess(form, msg, btn) {
+  msg.innerHTML = '<strong>\u2714 Message sent!</strong><br>The Aikinetic Tech team will be in touch shortly.';
+  msg.className = 'form-msg ok';
+  form.reset();
+  fields.forEach(function(cfg) {
+    var el = document.getElementById(cfg.id);
+    el.classList.remove('valid', 'invalid');
+    document.getElementById(cfg.errId).classList.remove('show');
+  });
+  btn.textContent = 'Sent \u2714';
+  btn.style.background = '#16a34a';
+}
 
 // ── HEADER SCROLL SHADOW ──
 var header = document.getElementById('header');
