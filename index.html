@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aikinetic Tech — Intelligence in Motion</title>
+<meta name="description" content="Aikinetic Tech builds AI agents, intelligent automation, and enterprise integration solutions that move enterprises from AI experimentation to production-ready execution.">
+<meta property="og:title" content="Aikinetic Tech — Intelligence in Motion">
+<meta property="og:description" content="Enterprise AI agents, intelligent automation, and BPM/integration solutions for the modern enterprise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root{
+  --ink:#071328;
+  --ink2:#1a2e4a;
+  --accent:#2559f1;
+  --accent2:#4f8fff;
+  --sky:#c8deff;
+  --bg:#ffffff;
+  --surface:#f4f7fb;
+  --surface2:#eaf1ff;
+  --line:#d8e4f5;
+  --muted:#6b7c96;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;overflow-x:hidden}
+
+/* ── TYPOGRAPHY ── */
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.18;letter-spacing:-0.02em}
+h1{font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:700}
+h2{font-size:clamp(1.7rem,3vw,2.5rem);font-weight:600}
+h3{font-size:1.18rem;font-weight:600;letter-spacing:-0.01em}
+p{line-height:1.72}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+
+/* ── HEADER ── */
+#header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  height:64px;
+}
+.header-inner{
+  max-width:1140px;margin:0 auto;padding:0 28px;
+  height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+/* Logo */
+.logo-btn{background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;flex-shrink:0;}
+.logo-svg-wrap{display:flex;align-items:center;gap:10px;}
+.logo-mark-img{width:46px;height:46px;flex-shrink:0;}
+.logo-text-block{display:flex;flex-direction:column;gap:1px;}
+.logo-wordmark{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;letter-spacing:-0.01em;line-height:1;color:#3390f0;}
+.logo-wordmark span{color:#3390f0;}
+.logo-tagline{font-family:'Inter',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.12em;color:#9498a0;text-transform:uppercase;}
+
+/* Nav */
+.nav{display:flex;align-items:center;gap:4px;}
+.nav-link{
+  font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;color:#0c1326;
+  background:none;border:none;cursor:pointer;padding:6px 12px;border-radius:6px;
+  text-decoration:none;transition:background 0.18s,color 0.18s;white-space:nowrap;
+}
+.nav-link:hover{background:var(--surface2);color:var(--accent);}
+.nav-cta{
+  margin-left:8px;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;
+  color:#fff;background:var(--accent);border:none;cursor:pointer;
+  padding:8px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;
+  transition:background 0.18s,transform 0.12s;
+}
+.nav-cta:hover{background:#1740c4;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all 0.2s;}
+.mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);z-index:899;padding:16px 28px 20px;flex-direction:column;gap:4px;}
+.mobile-nav.open{display:flex;}
+.mobile-nav .nav-link{font-size:15px;padding:10px 12px;}
+.mobile-nav .nav-cta{margin:8px 0 0;padding:11px 18px;font-size:15px;text-align:center;}
+
+/* ── HERO ── */
+#hero{
+  padding-top:64px;
+  background:linear-gradient(160deg,#f0f5fe 0%,#e4effe 40%,#eef4ff 100%);
+  min-height:90vh;display:flex;align-items:center;
+}
+.hero-inner{
+  max-width:1140px;margin:0 auto;padding:80px 28px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(37,89,241,.1);border:1px solid rgba(37,89,241,.22);
+  border-radius:100px;padding:5px 14px 5px 10px;
+  font-size:12px;font-weight:600;color:var(--accent);letter-spacing:0.04em;
+  margin-bottom:22px;
+}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.6}}
+.hero-headline{margin-bottom:22px;}
+.hero-headline em{font-style:normal;color:var(--accent);}
+.hero-sub{font-size:1.07rem;color:var(--ink2);max-width:52ch;margin-bottom:36px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+  color:#fff;background:var(--accent);border:none;cursor:pointer;
+  padding:13px 26px;border-radius:10px;text-decoration:none;
+  transition:background 0.18s,transform 0.14s,box-shadow 0.18s;
+  box-shadow:0 4px 16px rgba(37,89,241,.28);
+}
+.btn-primary:hover{background:#1740c4;transform:translateY(-2px);box-shadow:0 6px 22px rgba(37,89,241,.36);}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+  color:var(--accent);background:#fff;border:1.5px solid var(--accent);cursor:pointer;
+  padding:12px 24px;border-radius:10px;text-decoration:none;
+  transition:background 0.18s,transform 0.14s;
+}
+.btn-outline:hover{background:var(--surface2);transform:translateY(-2px);}
+.hero-proof{display:flex;gap:28px;flex-wrap:wrap;}
+.proof-item{display:flex;flex-direction:column;}
+.proof-num{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--ink);}
+.proof-label{font-size:12px;color:var(--muted);font-weight:500;}
+
+/* Hero visual */
+.hero-visual{display:flex;align-items:center;justify-content:center;}
+.hero-diagram{width:100%;max-width:460px;}
+
+/* ── SVG FLOW DIAGRAM ── */
+.flow-svg{width:100%;height:auto;}
+
+/* ── SECTION COMMON ── */
+section{padding:88px 0;}
+.section-eyebrow{
+  display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:0.1em;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.section-header{margin-bottom:52px;}
+.section-header h2{margin-bottom:14px;}
+.section-header p{color:var(--ink2);font-size:1.05rem;max-width:58ch;}
+
+/* ── ABOUT ── */
+#about{background:var(--bg);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.about-content p{color:var(--ink2);margin-bottom:18px;font-size:1.02rem;}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;}
+.about-pillar{
+  background:var(--surface2);border:1px solid var(--line);border-radius:10px;
+  padding:16px 18px;
+}
+.about-pillar h4{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:0.04em;margin-bottom:4px;}
+.about-pillar p{font-size:13px;color:var(--ink2);max-width:none;line-height:1.55;}
+.about-stats{display:flex;flex-direction:column;gap:20px;}
+.stat-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:24px 28px;display:flex;align-items:flex-start;gap:18px;
+}
+.stat-icon{
+  width:44px;height:44px;border-radius:10px;background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:22px;
+}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--ink);line-height:1;}
+.stat-desc{font-size:13.5px;color:var(--muted);margin-top:4px;}
+
+/* ── SERVICES ── */
+#services{background:var(--surface);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.service-card{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:28px;transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s;
+}
+.service-card:hover{box-shadow:0 8px 30px rgba(37,89,241,.1);transform:translateY(-3px);border-color:var(--accent2);}
+.service-icon{
+  width:48px;height:48px;border-radius:12px;background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  font-size:24px;
+}
+.service-card h3{margin-bottom:10px;font-size:1.08rem;}
+.service-card p{font-size:14px;color:var(--muted);line-height:1.65;max-width:none;}
+.service-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+.tag{font-size:11px;font-weight:600;color:var(--accent);background:var(--surface2);border:1px solid var(--sky);padding:3px 9px;border-radius:100px;}
+
+/* ── USE CASES ── */
+#usecases{background:#fff;}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.uc-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px;border-left:3px solid var(--accent);
+}
+.uc-card h3{font-size:1rem;margin-bottom:8px;color:var(--ink);}
+.uc-card p{font-size:13.5px;color:var(--muted);max-width:none;line-height:1.62;}
+
+/* ── FOUNDER ── */
+#founder{background:linear-gradient(135deg,#f0f6ff 0%,#e9f0fe 100%);}
+.founder-inner{display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start;}
+.founder-card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  padding:32px 28px;text-align:center;
+}
+.founder-avatar{
+  width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+  font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:#fff;
+}
+.founder-name{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink);}
+.founder-title{font-size:13px;color:var(--muted);margin-top:4px;margin-bottom:16px;}
+.founder-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.founder-content h2{margin-bottom:20px;}
+.founder-note{
+  background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);
+  border-radius:0 12px 12px 0;padding:22px 24px;margin-bottom:24px;
+  font-size:1.02rem;color:var(--ink2);font-style:italic;line-height:1.75;
+}
+.founder-bio p{font-size:1rem;color:var(--ink2);margin-bottom:14px;}
+.founder-links{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+.founder-link{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:14px;font-weight:600;color:var(--accent);text-decoration:none;
+  border:1.5px solid var(--accent);border-radius:8px;padding:8px 16px;
+  transition:background 0.16s;
+}
+.founder-link:hover{background:var(--surface2);}
+
+/* ── PROCESS ── */
+#process{background:var(--surface);}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.process-step{position:relative;padding:28px 24px;}
+.process-step::after{
+  content:'';position:absolute;top:40px;right:-14px;width:28px;height:2px;
+  background:linear-gradient(90deg,var(--line),var(--accent2));
+}
+.process-step:last-child::after{display:none;}
+.step-num{
+  font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;
+  color:var(--surface2);line-height:1;margin-bottom:12px;
+  -webkit-text-stroke:2px var(--accent2);
+}
+.process-step h3{font-size:1rem;margin-bottom:8px;}
+.process-step p{font-size:13.5px;color:var(--muted);max-width:none;line-height:1.62;}
+
+/* ── CONTACT ── */
+#contact{background:#fff;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.contact-info h2{margin-bottom:16px;}
+.contact-info p{color:var(--ink2);margin-bottom:28px;font-size:1.02rem;}
+.contact-items{display:flex;flex-direction:column;gap:16px;}
+.contact-item{display:flex;align-items:flex-start;gap:14px;}
+.c-icon{width:40px;height:40px;border-radius:10px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.c-label{font-size:12px;color:var(--muted);font-weight:500;}
+.c-val{font-size:14.5px;font-weight:600;color:var(--ink);}
+.c-val a{color:inherit;text-decoration:none;}
+.c-val a:hover{color:var(--accent);}
+
+/* Form */
+.contact-form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:32px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.form-group label{font-size:13px;font-weight:600;color:var(--ink2);}
+.form-group input,.form-group select,.form-group textarea{
+  font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:8px;
+  padding:10px 14px;transition:border-color 0.18s,box-shadow 0.18s;outline:none;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,89,241,.12);}
+.form-group input.valid{border-color:#22c55e;}
+.form-group input.invalid,.form-group select.invalid,.form-group textarea.invalid{border-color:#ef4444;}
+.form-group textarea{resize:vertical;min-height:110px;}
+.field-err{font-size:12px;color:#ef4444;display:none;}
+.field-err.show{display:block;}
+.form-msg{padding:12px 16px;border-radius:8px;font-size:14px;margin-top:12px;display:none;}
+.form-msg.ok{display:block;background:#dcfce7;color:#166534;border:1px solid #86efac;}
+.form-msg.err{display:block;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;}
+.submit-btn{
+  width:100%;padding:13px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+  color:#fff;background:var(--accent);border:none;border-radius:10px;cursor:pointer;
+  transition:background 0.18s,transform 0.14s;margin-top:4px;
+}
+.submit-btn:hover:not(:disabled){background:#1740c4;transform:translateY(-1px);}
+.submit-btn:disabled{opacity:0.65;cursor:not-allowed;}
+
+/* ── FOOTER ── */
+#footer{background:var(--ink);color:#fff;padding:52px 0 32px;}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.footer-brand p{font-size:13.5px;color:rgba(255,255,255,.55);max-width:38ch;margin-top:14px;line-height:1.7;}
+.footer-heading{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.08em;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:14px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links li a,.footer-links li button{
+  font-size:13.5px;color:rgba(255,255,255,.65);text-decoration:none;background:none;border:none;cursor:pointer;padding:0;
+  transition:color 0.16s;
+}
+.footer-links li a:hover,.footer-links li button:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{font-size:12.5px;color:rgba(255,255,255,.4);}
+.footer-soc{display:flex;gap:12px;}
+.soc-link{
+  display:flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.55);text-decoration:none;font-size:15px;
+  transition:border-color 0.16s,color 0.16s;
+}
+.soc-link:hover{border-color:rgba(255,255,255,.4);color:#fff;}
+
+/* Footer logo */
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.footer-mark-img{width:40px;height:40px;flex-shrink:0;}
+.footer-wordmark{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;letter-spacing:-0.03em;color:#fff;}
+.footer-wordmark span{color:var(--accent2);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:40px;padding:60px 28px;}
+  .hero-visual{order:-1;}
+  .hero-diagram{max-width:340px;margin:0 auto;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
+  .services-grid,.uc-grid{grid-template-columns:1fr 1fr;}
+  .process-steps{grid-template-columns:1fr 1fr;}
+  .process-step::after{display:none;}
+  .founder-inner{grid-template-columns:1fr;gap:32px;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:36px;}
+}
+@media(max-width:600px){
+  section{padding:60px 0;}
+  h1{font-size:2.1rem;}
+  .services-grid,.uc-grid,.process-steps{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .hero-proof{gap:20px;}
+  .footer-inner{grid-template-columns:1fr;}
+  .nav{display:none;}
+  .nav-cta{display:none;}
+  .hamburger{display:flex;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header" role="banner">
+  <div class="header-inner">
+    <button class="logo-btn" onclick="goTo('hero')" aria-label="Go to top">
+      <div class="logo-svg-wrap">
+        <svg class="logo-mark-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="lg1" x1="0.2" y1="0" x2="0.8" y2="1">
+              <stop offset="0%" stop-color="#5fa8f8"/>
+              <stop offset="50%" stop-color="#3d82e6"/>
+              <stop offset="100%" stop-color="#2560cc"/>
+            </linearGradient>
+            <linearGradient id="lg2" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a90e8"/>
+              <stop offset="100%" stop-color="#2055bb"/>
+            </linearGradient>
+          </defs>
+          <path fill-rule="evenodd" d="M46,2 L54,2 L100,97 L80,97 L50,30 L20,97 L0,97 Z M50,10 L44,26 L56,26 Z" fill="url(#lg1)"/>
+          <path d="M56,18 L60,18 L100,97 L80,97 Z" fill="#1a4fa8" opacity="0.25"/>
+          <path d="M4,80 C14,63 30,46 52,28 C64,18 76,11 85,8" stroke="url(#lg2)" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <path d="M4,80 C14,63 30,46 52,28 C64,18 76,11 85,8" stroke="#b0d4ff" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.55"/>
+          <circle cx="85" cy="7" r="9" fill="#4a8fe8"/>
+          <circle cx="82" cy="5" r="3" fill="#c8e4ff" opacity="0.8"/>
+        </svg>
+        <div class="logo-text-block">
+          <div class="logo-wordmark"><span>AI</span>KINETIC TECH</div>
+          <div class="logo-tagline">Intelligence in Motion</div>
+        </div>
+      </div>
+    </button>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <button class="nav-link" onclick="goTo('about')">About</button>
+      <button class="nav-link" onclick="goTo('services')">Services</button>
+      <button class="nav-link" onclick="goTo('usecases')">Use Cases</button>
+      <button class="nav-link" onclick="goTo('founder')">Founder</button>
+      <button class="nav-link" onclick="goTo('process')">Process</button>
+    </nav>
+    <button class="nav-cta" onclick="goTo('contact')">Discuss Your AI Opportunity</button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <button class="nav-link" onclick="goTo('about');closeMobileNav()">About</button>
+  <button class="nav-link" onclick="goTo('services');closeMobileNav()">Services</button>
+  <button class="nav-link" onclick="goTo('usecases');closeMobileNav()">Use Cases</button>
+  <button class="nav-link" onclick="goTo('founder');closeMobileNav()">Founder</button>
+  <button class="nav-link" onclick="goTo('process');closeMobileNav()">Process</button>
+  <button class="nav-cta" onclick="goTo('contact');closeMobileNav()">Discuss Your AI Opportunity</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        Enterprise AI & Automation
+      </div>
+      <h1 class="hero-headline" id="hero-heading">
+        From AI Experimentation<br>to <em>Production Execution</em>
+      </h1>
+      <p class="hero-sub">
+        Aikinetic Tech architects AI agents, intelligent automation, and enterprise integration solutions that connect intelligence with the systems and workflows that run your business.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="goTo('contact')">Discuss Your AI Opportunity →</button>
+        <button class="btn-outline" onclick="goTo('services')">Explore Services</button>
+      </div>
+      <div class="hero-proof" role="list">
+        <div class="proof-item" role="listitem">
+          <span class="proof-num">18+</span>
+          <span class="proof-label">Years Enterprise Experience</span>
+        </div>
+        <div class="proof-item" role="listitem">
+          <span class="proof-num">FZCO</span>
+          <span class="proof-label">Dubai IFZA Registered</span>
+        </div>
+        <div class="proof-item" role="listitem">
+          <span class="proof-num">AI-First</span>
+          <span class="proof-label">Delivery Approach</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-diagram">
+        <svg class="flow-svg" viewBox="0 0 440 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2559f1"/>
+              <stop offset="100%" stop-color="#4f8fff"/>
+            </linearGradient>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#e8f1fd"/>
+              <stop offset="100%" stop-color="#ddeaff"/>
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Background card -->
+          <rect x="10" y="10" width="420" height="340" rx="20" fill="url(#bgGrad)" stroke="#d8e4f5" stroke-width="1.5"/>
+          <!-- Title -->
+          <text x="220" y="42" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="600" fill="#071328" letter-spacing="-0.3">Intelligence Flow Architecture</text>
+          <!-- Node: Data -->
+          <rect x="30" y="66" width="110" height="52" rx="10" fill="#fff" stroke="#d8e4f5" stroke-width="1.5"/>
+          <text x="85" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">Enterprise Data</text>
+          <text x="85" y="103" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#071328">Sources</text>
+          <!-- Node: Integration -->
+          <rect x="170" y="66" width="100" height="52" rx="10" fill="url(#nodeGrad)"/>
+          <text x="220" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,.75)">Integration</text>
+          <text x="220" y="103" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#fff">Layer</text>
+          <!-- Node: AI Engine -->
+          <rect x="300" y="66" width="110" height="52" rx="10" fill="#fff" stroke="#2559f1" stroke-width="2"/>
+          <text x="355" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">Agentic</text>
+          <text x="355" y="103" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#2559f1">AI Engine</text>
+          <!-- Arrows row 1 -->
+          <path d="M140,92 L168,92" stroke="#4f8fff" stroke-width="2" marker-end="url(#arr)"/>
+          <path d="M270,92 L298,92" stroke="#4f8fff" stroke-width="2" marker-end="url(#arr)"/>
+          <defs>
+            <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <polygon points="0,0 7,3.5 0,7" fill="#4f8fff"/>
+            </marker>
+          </defs>
+          <!-- Middle row labels -->
+          <text x="220" y="140" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">↓ Process Orchestration ↓</text>
+          <!-- Row 2: Automation nodes -->
+          <rect x="30" y="158" width="100" height="48" rx="10" fill="#fff" stroke="#d8e4f5" stroke-width="1.5"/>
+          <text x="80" y="176" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">BPM / RPA</text>
+          <text x="80" y="194" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#071328">Automate</text>
+          <rect x="155" y="158" width="100" height="48" rx="10" fill="#fff" stroke="#d8e4f5" stroke-width="1.5"/>
+          <text x="205" y="176" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">Agents</text>
+          <text x="205" y="194" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#071328">Decide</text>
+          <rect x="280" y="158" width="100" height="48" rx="10" fill="#fff" stroke="#d8e4f5" stroke-width="1.5"/>
+          <text x="330" y="176" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">Insights</text>
+          <text x="330" y="194" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#071328">Report</text>
+          <!-- Vertical arrows from row1 -->
+          <path d="M355,118 L330,156" stroke="#c8deff" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <path d="M220,118 L205,156" stroke="#c8deff" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <path d="M85,118 L80,156" stroke="#c8deff" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <!-- Row 3: Outcomes -->
+          <text x="220" y="228" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">↓ Business Outcomes ↓</text>
+          <rect x="52" y="244" width="104" height="44" rx="10" fill="#eaf1ff" stroke="#c8deff" stroke-width="1.5"/>
+          <text x="104" y="263" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="600" fill="#2559f1">Faster Ops</text>
+          <text x="104" y="279" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">30–60% cost ↓</text>
+          <rect x="168" y="244" width="104" height="44" rx="10" fill="#eaf1ff" stroke="#c8deff" stroke-width="1.5"/>
+          <text x="220" y="263" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="600" fill="#2559f1">Governed AI</text>
+          <text x="220" y="279" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">Auditable &amp; secure</text>
+          <rect x="284" y="244" width="104" height="44" rx="10" fill="#eaf1ff" stroke="#c8deff" stroke-width="1.5"/>
+          <text x="336" y="263" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="600" fill="#2559f1">Scalable</text>
+          <text x="336" y="279" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96">Production-ready</text>
+          <!-- Bottom pulse line -->
+          <line x1="40" y1="320" x2="400" y2="320" stroke="#d8e4f5" stroke-width="1.5"/>
+          <line x1="40" y1="320" x2="120" y2="320" stroke="url(#nodeGrad)" stroke-width="3" stroke-linecap="round">
+            <animate attributeName="x1" values="40;360;40" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="120;400;120" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <text x="220" y="337" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#6b7c96" letter-spacing="0.08em">INTELLIGENCE IN MOTION</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-content">
+        <span class="section-eyebrow">About Aikinetic Tech</span>
+        <h2 id="about-heading">Enterprise AI, Built for Production</h2>
+        <p>Aikinetic Tech is a Dubai-based enterprise AI and automation consultancy built for organisations ready to move beyond AI pilots. We design, build, and govern agentic AI systems, intelligent automation pipelines, and enterprise integrations that operate at scale.</p>
+        <p>Our approach combines deep enterprise architecture expertise with modern AI tooling — bridging the gap between what large language models can do in demos and what enterprises actually need in production.</p>
+        <div class="about-pillars">
+          <div class="about-pillar">
+            <h4>AI-Native</h4>
+            <p>LLM agents and AI pipelines designed from first principles for enterprise constraints.</p>
+          </div>
+          <div class="about-pillar">
+            <h4>Governed</h4>
+            <p>Auditable, compliant, and secure — built for regulated industries.</p>
+          </div>
+          <div class="about-pillar">
+            <h4>Integration-First</h4>
+            <p>AI that connects with your existing systems, APIs, and workflows.</p>
+          </div>
+          <div class="about-pillar">
+            <h4>Outcome-Focused</h4>
+            <p>Measured by operational impact, not deployment milestones.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-icon" aria-hidden="true">🏢</div>
+          <div>
+            <div class="stat-num">IFZA</div>
+            <div class="stat-desc">Dubai free zone registered — FZCO entity, operating across UAE and the region.</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" aria-hidden="true">⚡</div>
+          <div>
+            <div class="stat-num">18+</div>
+            <div class="stat-desc">Years delivering enterprise technology transformation in banking, financial services, and large-scale enterprise environments.</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" aria-hidden="true">🎯</div>
+          <div>
+            <div class="stat-num">AI-First</div>
+            <div class="stat-desc">Every engagement starts with AI feasibility — not retrofitting automation onto legacy processes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" aria-labelledby="services-heading">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Build</span>
+      <h2 id="services-heading">Services</h2>
+      <p>Six capability areas covering the full stack of enterprise AI — from strategy to production.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">🤖</div>
+        <h3>Agentic AI Systems</h3>
+        <p>Multi-agent architectures, LLM orchestration, and autonomous decision pipelines designed for enterprise-grade reliability and auditability.</p>
+        <div class="service-tags"><span class="tag">LLM Agents</span><span class="tag">RAG</span><span class="tag">Orchestration</span></div>
+      </article>
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">⚙️</div>
+        <h3>Intelligent Automation</h3>
+        <p>BPM, RPA, and AI-enhanced workflow automation that eliminates manual bottlenecks across finance, operations, and compliance functions.</p>
+        <div class="service-tags"><span class="tag">BPM/BAW</span><span class="tag">RPA</span><span class="tag">Power Automate</span></div>
+      </article>
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">🔗</div>
+        <h3>Enterprise Integration</h3>
+        <p>API design, middleware architecture, and system integration connecting AI capabilities with your existing ERP, CRM, and core banking systems.</p>
+        <div class="service-tags"><span class="tag">REST/SOAP</span><span class="tag">ESB</span><span class="tag">IBM BAW</span></div>
+      </article>
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">🧠</div>
+        <h3>AI Strategy & Roadmapping</h3>
+        <p>From opportunity assessment to a prioritised, funded AI roadmap — aligned with your business strategy and enterprise architecture.</p>
+        <div class="service-tags"><span class="tag">Assessment</span><span class="tag">Roadmap</span><span class="tag">Governance</span></div>
+      </article>
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">☁️</div>
+        <h3>Cloud-Native Modernisation</h3>
+        <p>Microservices, Kubernetes, and DevOps delivery that moves enterprise workloads to scalable, AI-ready cloud infrastructure.</p>
+        <div class="service-tags"><span class="tag">Kubernetes</span><span class="tag">GCP</span><span class="tag">DevOps</span></div>
+      </article>
+      <article class="service-card">
+        <div class="service-icon" aria-hidden="true">📊</div>
+        <h3>AI Delivery Governance</h3>
+        <p>Agile delivery management, risk frameworks, and cross-functional coordination ensuring your AI programmes land on time and on budget.</p>
+        <div class="service-tags"><span class="tag">Agile</span><span class="tag">RAID</span><span class="tag">UAT</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="usecases" aria-labelledby="uc-heading">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">Where It Works</span>
+      <h2 id="uc-heading">Use Cases</h2>
+      <p>Proven applications across banking, financial services, and large enterprise operations.</p>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card">
+        <h3>Loan & Credit Decisioning</h3>
+        <p>AI-augmented credit assessment workflows that combine structured data, unstructured documents, and policy rules — reducing decision cycle from days to hours.</p>
+      </div>
+      <div class="uc-card">
+        <h3>Regulatory Compliance Automation</h3>
+        <p>Automated AML, KYC, and regulatory reporting pipelines with full audit trails and exception escalation built in from the start.</p>
+      </div>
+      <div class="uc-card">
+        <h3>Intelligent Document Processing</h3>
+        <p>LLM-powered extraction, classification, and routing of contracts, invoices, and onboarding documents — replacing manual data entry at scale.</p>
+      </div>
+      <div class="uc-card">
+        <h3>Enterprise Chatbots & Copilots</h3>
+        <p>RAG-based internal knowledge assistants and customer-facing copilots grounded in your organisation's own data and policies.</p>
+      </div>
+      <div class="uc-card">
+        <h3>Operations Centre Automation</h3>
+        <p>Event-driven automation for IT ops, incident triage, and service desk — reducing MTTR and freeing engineers for higher-value work.</p>
+      </div>
+      <div class="uc-card">
+        <h3>Finance & Reconciliation Automation</h3>
+        <p>Automated reconciliation, bulk transaction processing, and financial close workflows — from legacy batch jobs to real-time intelligent pipelines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder" aria-labelledby="founder-heading">
+  <div class="wrap">
+    <div class="founder-inner">
+      <div class="founder-card">
+        <div class="founder-avatar" aria-label="Ismat Kamal avatar">IK</div>
+        <div class="founder-name">Ismat Kamal</div>
+        <div class="founder-title">Founder & CEO, Aikinetic Tech</div>
+        <div class="founder-tags">
+          <span class="tag">18+ Years</span>
+          <span class="tag">Gold Medalist</span>
+          <span class="tag">IBM Certified</span>
+        </div>
+      </div>
+      <div class="founder-content">
+        <span class="section-eyebrow">The Founder</span>
+        <h2 id="founder-heading">Built by Someone Who Has Shipped Enterprise AI</h2>
+        <blockquote class="founder-note">
+          "I started Aikinetic Tech because I kept seeing the same pattern: enterprises investing heavily in AI pilots that never reach production. The gap is never the technology — it's the architecture, the governance, and the integration with what already exists. That's exactly what we fix."
+        </blockquote>
+        <div class="founder-bio">
+          <p>Ismat brings 18+ years of hands-on experience delivering enterprise technology transformation across banking and financial services in the UAE, Saudi Arabia, and Pakistan.</p>
+          <p>He holds a Gold Medal in Information Technology from Punjab University and IBM WebSphere Integration Developer certification, and has led complex BPM, integration, and cloud-native modernisation programmes for major financial institutions.</p>
+        </div>
+        <div class="founder-links">
+          <a href="https://www.linkedin.com/in/ismatkamal/" target="_blank" rel="noopener noreferrer" class="founder-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn Profile
+          </a>
+          <a href="https://www.linkedin.com/company/aikinetic-tech" target="_blank" rel="noopener noreferrer" class="founder-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Aikinetic on LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" aria-labelledby="process-heading">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-eyebrow">How We Work</span>
+      <h2 id="process-heading">From First Call to Live System</h2>
+      <p>A structured engagement model that takes you from opportunity to production in four phases.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">01</div>
+        <h3>Discover</h3>
+        <p>A focused AI opportunity assessment — mapping your processes, data assets, and business priorities against what's achievable with today's AI capabilities.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">02</div>
+        <h3>Design</h3>
+        <p>Architecture, data flows, and governance framework — with an agreed delivery roadmap, milestones, and success metrics before a line of code is written.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">03</div>
+        <h3>Build</h3>
+        <p>Agile delivery with weekly increments, cross-functional coordination, UAT management, and integration testing against your real enterprise environment.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num" aria-hidden="true">04</div>
+        <h3>Govern</h3>
+        <p>Production go-live, stability monitoring, performance optimisation, and ongoing governance — so your AI systems keep getting better, not just live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2 id="contact-heading">Discuss Your AI Opportunity</h2>
+        <p>Whether you're scoping a first AI initiative or scaling an existing programme, we'd like to understand what you're trying to achieve.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon" aria-hidden="true">📧</div>
+            <div>
+              <div class="c-label">Email</div>
+              <div class="c-val"><a href="mailto:ismat485@gmail.com">ismat485@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon" aria-hidden="true">📍</div>
+            <div>
+              <div class="c-label">Location</div>
+              <div class="c-val">Dubai, UAE — IFZA Free Zone</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon" aria-hidden="true">🔗</div>
+            <div>
+              <div class="c-label">LinkedIn</div>
+              <div class="c-val"><a href="https://www.linkedin.com/company/aikinetic-tech" target="_blank" rel="noopener noreferrer">linkedin.com/company/aikinetic-tech</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm" action="https://formspree.io/f/xjyvvezp" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New enquiry — Aikinetic Tech">
+          <input type="hidden" name="_replyto" id="replyto-field" value="">
+          <input type="hidden" name="_next" value="">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="fname" name="fname" placeholder="Jane" required autocomplete="given-name">
+              <span class="field-err" id="fname-err" role="alert">Please enter your first name.</span>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="lname" name="lname" placeholder="Smith" required autocomplete="family-name">
+              <span class="field-err" id="lname-err" role="alert">Please enter your last name.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Work Email <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email">
+            <span class="field-err" id="email-err" role="alert">Please enter a valid email address.</span>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Acme Corp" autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label for="interest">Area of Interest <span aria-hidden="true">*</span></label>
+            <select id="interest" name="interest" required>
+              <option value="">Select a service area…</option>
+              <option>Agentic AI Systems</option>
+              <option>Intelligent Automation (BPM/RPA)</option>
+              <option>Enterprise Integration</option>
+              <option>AI Strategy &amp; Roadmapping</option>
+              <option>Cloud-Native Modernisation</option>
+              <option>AI Delivery Governance</option>
+              <option>Other / Not sure yet</option>
+            </select>
+            <span class="field-err" id="interest-err" role="alert">Please select an area of interest.</span>
+          </div>
+          <div class="form-group">
+            <label for="message">Message <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" placeholder="Tell us briefly what you're trying to solve…" required></textarea>
+            <span class="field-err" id="message-err" role="alert">Please add a short message.</span>
+          </div>
+          <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+          <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" role="contentinfo">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <svg class="footer-mark-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill-rule="evenodd" d="M46,2 L54,2 L100,97 L80,97 L50,30 L20,97 L0,97 Z M50,10 L44,26 L56,26 Z" fill="rgba(255,255,255,0.85)"/>
+          <path d="M4,80 C14,63 30,46 52,28 C64,18 76,11 85,8" stroke="rgba(255,255,255,0.9)" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <circle cx="85" cy="7" r="9" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+          <div class="footer-wordmark"><span>AI</span>KINETIC TECH</div>
+        </div>
+        <p>Enterprise AI and intelligent automation for organisations ready to move beyond the pilot. Dubai, UAE.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><button onclick="goTo('about')">About</button></li>
+          <li><button onclick="goTo('services')">Services</button></li>
+          <li><button onclick="goTo('usecases')">Use Cases</button></li>
+          <li><button onclick="goTo('founder')">Founder</button></li>
+          <li><button onclick="goTo('process')">How We Work</button></li>
+          <li><button onclick="goTo('contact')">Contact</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="https://www.linkedin.com/company/aikinetic-tech" target="_blank" rel="noopener noreferrer">LinkedIn Company</a></li>
+          <li><a href="https://www.linkedin.com/in/ismatkamal/" target="_blank" rel="noopener noreferrer">Founder's Profile</a></li>
+          <li><a href="mailto:ismat485@gmail.com">ismat485@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Aikinetic Tech FZCO. All rights reserved. Dubai, UAE — IFZA Free Zone.</p>
+      <div class="footer-soc">
+        <a href="https://www.linkedin.com/company/aikinetic-tech" target="_blank" rel="noopener noreferrer" class="soc-link" aria-label="Aikinetic Tech on LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAVIGATION ──
+function goTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var headerH = document.getElementById('header').offsetHeight || 64;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - headerH;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+// ── MOBILE NAV ──
+var hamburger = document.getElementById('hamburger');
+var mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', function() {
+  var isOpen = mobileNav.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', String(isOpen));
+});
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+}
+document.addEventListener('click', function(e) {
+  if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+    closeMobileNav();
+  }
+});
+
+// ── FORM VALIDATION & SUBMIT ──
+var fields = [
+  { id: 'fname',    errId: 'fname-err',    validate: function(v){ return v.trim().length > 0; } },
+  { id: 'lname',    errId: 'lname-err',    validate: function(v){ return v.trim().length > 0; } },
+  { id: 'email',    errId: 'email-err',    validate: function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); } },
+  { id: 'interest', errId: 'interest-err', validate: function(v){ return v !== ''; } },
+  { id: 'message',  errId: 'message-err',  validate: function(v){ return v.trim().length > 0; } }
+];
+
+fields.forEach(function(cfg) {
+  var el = document.getElementById(cfg.id);
+  el.addEventListener('blur', function() {
+    if (cfg.validate(el.value)) {
+      el.classList.remove('invalid'); el.classList.add('valid');
+      document.getElementById(cfg.errId).classList.remove('show');
+    } else {
+      el.classList.remove('valid'); el.classList.add('invalid');
+      document.getElementById(cfg.errId).classList.add('show');
+    }
+  });
+});
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  // Validate first
+  var valid = true;
+  fields.forEach(function(cfg) {
+    var el = document.getElementById(cfg.id);
+    if (!cfg.validate(el.value)) {
+      valid = false;
+      el.classList.remove('valid'); el.classList.add('invalid');
+      document.getElementById(cfg.errId).classList.add('show');
+    } else {
+      el.classList.remove('invalid'); el.classList.add('valid');
+      document.getElementById(cfg.errId).classList.remove('show');
+    }
+  });
+
+  if (!valid) {
+    e.preventDefault();
+    var msg = document.getElementById('formMsg');
+    msg.innerHTML = 'Please fill in all required fields correctly.';
+    msg.className = 'form-msg err';
+    return;
+  }
+
+  // Set reply-to from email field
+  var email = document.getElementById('email').value.trim();
+  var replyTo = document.getElementById('replyto-field');
+  if (replyTo) replyTo.value = email;
+
+  // Let the native form POST to Formspree — no fetch, no CORS issues
+  // Formspree will send the email and redirect back (or to _next URL)
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending\u2026';
+  // form submits natively
+});
+
+// ── HEADER SCROLL SHADOW ──
+var header = document.getElementById('header');
+window.addEventListener('scroll', function() {
+  header.style.boxShadow = window.scrollY > 10 ? '0 2px 16px rgba(7,19,40,.08)' : 'none';
+}, { passive: true });
+</script>
+</body>
+</html>
